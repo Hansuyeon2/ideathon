@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="main">
+
+      {% for post in posts %}
+     <a href="{% url 'main:detail' post.id %}"
+            style="text-decoration: none;color:black;">{{post.title}}</a>
+      {%endfor%}
+  <div class="button">  
+    <form><button ><a href="{% url 'main:new' %}">전시등록하기</a></button></form>
+  </div>
+  
+
+</div>
+{% endblock %}

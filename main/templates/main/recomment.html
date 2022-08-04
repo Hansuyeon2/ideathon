@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    
+<div class="recomment">
+    <form action="{%url 'main:create_recomment' post.id %}" method="POST">
+        {%csrf_token%}
+        <textarea name="content" placeholder="댓글내용입력" style="width:800px;height:90px;border: 2px solid #000000;" ></textarea>
+        <input type="submit" value="확인">
+    </form>
+
+</div>
+
+{% endblock %}

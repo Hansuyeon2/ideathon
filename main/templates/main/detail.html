@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    
+<div class="detail">
+    
+   
+<p>{{ post.writer }}<br>
+    게시일 : {{post.pub_date}}<br>
+    전시 제목 : {{post.title}}<br>
+    분위기 : {{post.genre}}<br>
+    한줄소개 : {{post.summary}}<br>
+    기획의도 : {{post.intention}}<br>
+    예상 전시 장소 : {{post.location}}<br>
+    목표 펀딩가격 : {{post.price}}<br>
+    {{post.body}}<br>
+ 
+ 
+    {% if post.image %}
+        <div class="photo"><img src="{{ post.image.url }}" alt="사진"> </div>
+    {% endif %}    
+    {{post.body|linebreaksbr}}</p>
+    
+
+    <button>
+        <a href="{%url 'main:edit' post.id%}">수정하기</a></button>
+    <button>
+        <a href="{%url 'main:delete' post.id%}">삭제하기</a></button>
+        
+        
+    <div class="comment">
+        <div>
+          <form action="{%url 'main:create_comment' post.id%}" method="POST">
+           {%csrf_token%}
+           <textarea name="content" placeholder="댓글내용입력" style="width:800px;height:90px;border: 2px solid #000000;" ></textarea>
+           <input type="submit" value="확인">
+          </form>
+         </div>
+         {% for comment in comments %}
+         <a href="{%url 'main:edit_comment' comment.id %}">수정하기</a>
+         <a href="{% url 'main:delete_comment' comment.id %}">삭제하기</a>
+        <br>
+         <div>
+        
+         <div>
+         {{comment.content}}
+       
+        
+         <hr>
+     
+         {% endfor %}
+         </div>
+             
+     </div>
+</div>
+
+{% endblock %}

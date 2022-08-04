@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    
+<div class="write">
+<form action="{% url 'main:create' %}" method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    <p>전시 제목 : <input type="text" name="title"></p>
+    <p>작가 이름 : <input type="text" name="writer"></p>
+    <p>분위기: <input type="text" name="genre"></p>
+    <p>한줄소개: <input type="text" name="summary"></p>
+    <p>기획의도: <input type="text" name="intention"></p>
+    <p>예상 전시 장소: <input type="text" name="location"></p>
+    <p>목표 펀딩 가격: <input type="text" name="price">원</p>
+    <p>사진 : <input type="file" name="image" ></p>
+    <p>내용 : <textarea type="text" name="body" placeholder="내용을 입력하세요"></textarea></p>
+    <button type="submit" >완료</button>
+    
+</form>
+</div>
+
+{% endblock %}
+
